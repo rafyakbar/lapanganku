@@ -13,7 +13,10 @@ class ProvinsiTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('provinsi', function (Blueprint $table){
+            $table->string('id')->primary()->unique();
+            $table->string('nama');
+        });
     }
 
     /**
