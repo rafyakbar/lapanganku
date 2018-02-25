@@ -13,7 +13,12 @@ class KecamatanTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('kecamatan', function (Blueprint $table){
+            $table->string('id')->primary()->unique();
+            $table->string('kabupaten_id');
+            $table->foreign('kabupaten_id')->references('id')->on('kabupaten')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->string('nama');
+        });
     }
 
     /**
