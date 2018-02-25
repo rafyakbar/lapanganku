@@ -13,7 +13,12 @@ class JenisSportcenterTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('jenis_sportcenter', function (Blueprint $table){
+            $table->integer('jenis_id')->unsigned();
+            $table->foreign('jenis_id')->references('id')->on('jenis')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->bigInteger('sportcenter_id')->unsigned();
+            $table->foreign('sportcenter_id')->references('id')->on('sportcenter')->onUpdate('CASCADE')->onDelete('CASCADE');
+        });
     }
 
     /**
