@@ -13,7 +13,15 @@ class SewaTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('sewa', function (Blueprint $table){
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->bigInteger('lapangan_id')->unsigned();
+            $table->foreign('lapangan_id')->references('id')->on('lapangan')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->timestamp('waktu');
+            $table->integer('jam')->unsigned();
+            $table->timestamps();
+        });
     }
 
     /**
