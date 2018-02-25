@@ -13,7 +13,12 @@ class KelurahanTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('kelurahan', function (Blueprint $table){
+            $table->string('id')->primary()->unique();
+            $table->string('kecamatan_id');
+            $table->foreign('kecamatan_id')->references('id')->on('kecamatan')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->string('nama');
+        });
     }
 
     /**
