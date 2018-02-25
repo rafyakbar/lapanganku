@@ -13,7 +13,12 @@ class KabupatenTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('kabupaten', function (Blueprint $table){
+            $table->string('id')->primary()->unique();
+            $table->string('provinsi_id');
+            $table->foreign('provinsi_id')->references('id')->on('provinsi')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->string('nama');
+        });
     }
 
     /**
