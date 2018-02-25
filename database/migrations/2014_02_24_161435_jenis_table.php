@@ -13,7 +13,10 @@ class JenisTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('jenis', function (Blueprint $table){
+            $table->increments('id');
+            $table->string('nama');
+        });
     }
 
     /**
