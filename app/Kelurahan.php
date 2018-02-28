@@ -25,8 +25,8 @@ class Kelurahan extends Model
     {
         $kecamatan = $this->belongsTo('App\Kecamatan', 'kecamatan_id');
         if ($queryReturn)
-            return $kecamatan->first();
-        return $kecamatan;
+            return $kecamatan;
+        return $kecamatan->first();
     }
 
     /**
@@ -58,7 +58,7 @@ class Kelurahan extends Model
     {
         $sc = $this->hasMany('App\SportCenter', 'kelurahan_id');
         if ($queryReturn)
-            return $sc->get();
-        return $sc;
+            return $sc;
+        return $sc->get();
     }
 }
