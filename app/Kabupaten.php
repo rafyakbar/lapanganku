@@ -24,10 +24,10 @@ class Kabupaten extends Model
      */
     public function getProvinsi($queryReturn = false)
     {
-        $provinsi= $this->belongsTo('App\Provinsi', 'provinsi_id');
+        $data = $this->belongsTo('App\Provinsi', 'provinsi_id');
         if ($queryReturn)
-            return $provinsi;
-        return $provinsi->first();
+            return $data;
+        return $data->first();
     }
 
     /**
@@ -37,10 +37,10 @@ class Kabupaten extends Model
      */
     public function getKecamatan($queryReturn = false)
     {
-        $kecamatan = $this->hasMany('App\Kecamatan', 'kabupaten_id');
+        $data = $this->hasMany('App\Kecamatan', 'kabupaten_id');
         if ($queryReturn)
-            return $kecamatan;
-        return $kecamatan->get();
+            return $data;
+        return $data->get();
     }
 
     /**
@@ -52,10 +52,10 @@ class Kabupaten extends Model
     {
         $all_id_kecamatan = $this->getKecamatan(true)->select('id')->get()->toArray();
         $all_id_kecamatan = array_flatten($all_id_kecamatan);
-        $sportcenter = SportCenter::whereIn('kelurahan_id', $all_id_kecamatan);
+        $data = SportCenter::whereIn('kelurahan_id', $all_id_kecamatan);
         if ($queryReturn)
-            return $sportcenter;
-        return $sportcenter->get();
+            return $data;
+        return $data->get();
     }
     
 }
