@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class LapanganTable extends Migration
+class RatingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class LapanganTable extends Migration
      */
     public function up()
     {
-        Schema::create('lapangan', function (Blueprint $table){
-            $table->bigIncrements('id');
+        Schema::create('rating', function (Blueprint $table){
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->bigInteger('sportcenter_id')->unsigned();
             $table->foreign('sportcenter_id')->references('id')->on('sportcenter')->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->integer('jenis_id')->unsigned();
-            $table->foreign('jenis_id')->references('id')->on('jenis')->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->bigInteger('harga_id')->unsigned();
-            $table->foreign('harga_id')->references('id')->on('harga')->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->string('keterangan');
+            $table->smallInteger('bintang');
         });
     }
 
