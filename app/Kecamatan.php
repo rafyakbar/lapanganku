@@ -40,16 +40,16 @@ class Kecamatan extends Model
     }
 
     /**
-     * mendapatkan data kelurahan
+     * mendapatkan data sportcenter
      * @param bool $queryReturn
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function getKelurahan($queryReturn = false)
+    public function getSportCenter($queryReturn = false)
     {
-        $kelurahan = $this->hasMany('App\Kelurahan', 'kecamatan_id');
+        $sc = $this->hasMany('App\SportCenter', 'kelurahan_id');
         if ($queryReturn)
-            return $kelurahan;
-        return $kelurahan->get();
+            return $sc;
+        return $sc->get();
     }
 
 }

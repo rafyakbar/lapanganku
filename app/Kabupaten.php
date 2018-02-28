@@ -44,30 +44,15 @@ class Kabupaten extends Model
     }
 
     /**
-     * mendapatkan data kelurahan
-     * @param bool $queryReturn
-     * @return mixed
-     */
-    public function getKelurahan($queryReturn = false)
-    {
-        $all_id_kecamatan = $this->getKecamatan(true)->select('id')->get()->toArray();
-        $all_id_kecamatan = array_flatten($all_id_kecamatan);
-        $kelurahan = Kelurahan::whereIn('kecamatan_id', $all_id_kecamatan);
-        if ($queryReturn)
-            return $kelurahan;
-        return $kelurahan->get();
-    }
-
-    /**
      * mendapatkan data SportCenter
      * @param bool $queryReturn
      * @return mixed
      */
     public function getSportCenter($queryReturn = false)
     {
-        $all_id_kelurahan = $this->getKelurahan(true)->select('id')->get()->toArray();
-        $all_id_kelurahan = array_flatten($all_id_kelurahan);
-        $sportcenter = SportCenter::whereIn('kelurahan_id', $all_id_kelurahan);
+        $all_id_kecamatan = $this->getKecamatan(true)->select('id')->get()->toArray();
+        $all_id_kecamatan = array_flatten($all_id_kecamatan);
+        $sportcenter = SportCenter::whereIn('kelurahan_id', $all_id_kecamatan);
         if ($queryReturn)
             return $sportcenter;
         return $sportcenter->get();

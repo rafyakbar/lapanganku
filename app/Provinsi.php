@@ -43,19 +43,4 @@ class Provinsi extends Model
             return $kecamatan;
         return $kecamatan->get();
     }
-
-    /**
-     * mendapatkan data kelurahan
-     * @param bool $queryReturn
-     * @return mixed
-     */
-    public function getKelurahan($queryReturn = false)
-    {
-        $all_id_kecamatan = $this->getKecamatan(true)->select('id')->get()->toArray();
-        $all_id_kecamatan = array_flatten($all_id_kecamatan);
-        $kelurahan = Kelurahan::whereIn('kecamatan_id', $all_id_kecamatan);
-        if ($queryReturn)
-            return $kelurahan;
-        return $kelurahan->get();
-    }
 }
