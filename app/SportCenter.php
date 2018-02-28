@@ -9,30 +9,20 @@ class SportCenter extends Model
     protected $table = 'sportcenter';
 
     protected $fillable = [
-        'kelurahan_id', 'nama', 'dir', 'alamat', 'keterangan', 'created_at', 'updated_at'
+        'kecamatan_id', 'nama', 'dir', 'alamat', 'keterangan', 'created_at', 'updated_at'
     ];
 
     /**
-     * mendapatkan relasi atau data kelurahan
-     * @param bool|null $queryReturn
-     * @return Model|\Illuminate\Database\Eloquent\Relations\BelongsTo|null|object|static
-     */
-    public function getKelurahan($queryReturn = false)
-    {
-        $kelurahan = $this->belongsTo('App\Kelurahan', 'kelurahan_id');
-        if ($queryReturn)
-            return $kelurahan;
-        return $kelurahan->first();
-    }
-
-    /**
-     * mendapatkan data Kecamatan
+     * mendapatkan data kecamatan
      * @param bool $queryReturn
-     * @return mixed
+     * @return Model|\Illuminate\Database\Eloquent\Relations\BelongsTo|null|object|static
      */
     public function getKecamatan($queryReturn = false)
     {
-        return $this->getKelurahan()->getKecamatan($queryReturn);
+        $data = $this->belongsTo('App\Kecamatan', 'kecamatan_id');
+        if ($queryReturn)
+            return $data;
+        return $data->first();
     }
 
     /**
@@ -62,10 +52,10 @@ class SportCenter extends Model
      */
     public function getLapangan($queryReturn = false)
     {
-        $lapangan = $this->hasMany('App\Lapangan', 'sportcenter_id');
+        $data = $this->hasMany('App\Lapangan', 'sportcenter_id');
         if ($queryReturn)
-            return $lapangan;
-        return $lapangan->get();
+            return $data;
+        return $data->get();
     }
 
     /**
@@ -75,9 +65,87 @@ class SportCenter extends Model
      */
     public function getJenis($queryReturn = false)
     {
-        $jenis = $this->belongsToMany('App\Jenis', 'jenis_sportcenter', 'sportcenter_id', 'jenis_id');
+        $data = $this->belongsToMany('App\Jenis', 'jenis_sportcenter', 'sportcenter_id', 'jenis_id');
         if ($queryReturn)
-            return $jenis;
-        return $jenis->get();
+            return $data;
+        return $data->get();
+    }
+
+    /**
+     * mendapatkan data harga
+     * @param bool $queryReturn
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function getHarga($queryReturn = false)
+    {
+        $data = $this->hasMany('App\Harga', 'sportcenter_id');
+        if ($queryReturn)
+            return $data;
+        return $data->get();
+    }
+
+    /**
+     * mendapatkan data galeri
+     * @param bool $queryReturn
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function getGaleri($queryReturn = false)
+    {
+        $data = $this->hasMany('App\Galeri', 'sportcenter_id');
+        if ($queryReturn)
+            return $data;
+        return $data->get();
+    }
+
+    /**
+     * mendapatkan admin
+     * @param bool $queryReturn
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function getAdmin($queryReturn = false)
+    {
+        $data = $this->hasMany('App\User', 'sportcenter_id');
+        if ($queryReturn)
+            return $data;
+        return $data->get();
+    }
+
+    /**
+     * mendapatkan data member
+     * @param bool $queryReturn
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function getMember($queryReturn = false)
+    {
+        $data = $this->belongsToMany('App\User', 'member', 'sportcenter_id', 'user_id')->withPivot('valid_bulan')->withTimestamps();
+        if ($queryReturn)
+            return $data;
+        return $data->get();
+    }
+
+    /**
+     * mendapatkan rating
+     * @param bool $queryReturn
+     * @return $this|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getRating($queryReturn = false)
+    {
+        $data = $this->belongsToMany('App\User', 'member', 'sportcenter_id', 'user_id')->withPivot('bintang');
+        if ($queryReturn)
+            return $data;
+        return $data->get();
+    }
+
+    /**
+     * mendapatkan feedback
+     * @param bool $queryReturn
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function getFeedback($queryReturn = false)
+    {
+        $data = $this->belongsToMany('App\User', 'member', 'sportcenter_id', 'user_id')->withPivot('valid_bulan')->withTimestamps();
+        if ($queryReturn)
+            return $data;
+        return $data->get();
     }
 }
