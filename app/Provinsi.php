@@ -23,10 +23,10 @@ class Provinsi extends Model
      */
     public function getKabupaten($queryReturn = false)
     {
-        $kabupaten = $this->hasMany('App\Kabupaten', 'provinsi_id');
+        $data = $this->hasMany('App\Kabupaten', 'provinsi_id');
         if ($queryReturn)
-            return $kabupaten;
-        return $kabupaten->get();
+            return $data;
+        return $data->get();
     }
 
     /**
@@ -38,9 +38,9 @@ class Provinsi extends Model
     {
         $all_kabupaten_id = $this->getKabupaten(true)->select('id')->get()->toArray();
         $all_kabupaten_id = array_flatten($all_kabupaten_id);
-        $kecamatan = Kecamatan::whereIn('kabupaten_id', $all_kabupaten_id);
+        $data = Kecamatan::whereIn('kabupaten_id', $all_kabupaten_id);
         if ($queryReturn)
-            return $kecamatan;
-        return $kecamatan->get();
+            return $data;
+        return $data->get();
     }
 }
