@@ -15,8 +15,8 @@ class SportcenterTable extends Migration
     {
         Schema::create('sportcenter', function (Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('kelurahan_id');
-            $table->foreign('kelurahan_id')->references('id')->on('kelurahan')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->string('kecamatan_id');
+            $table->foreign('kecamatan_id')->references('id')->on('kecamatan')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->string('nama');
             $table->text('dir');
             $table->text('alamat');
