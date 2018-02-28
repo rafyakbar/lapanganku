@@ -28,4 +28,34 @@ class Provinsi extends Model
             return $kabupaten;
         return $kabupaten->get();
     }
+
+    /**
+     * mendapatkan data kecamatan
+     * @param bool $queryReturn
+     * @return mixed
+     */
+    public function getKecamatan($queryReturn = false)
+    {
+        $all_kabupaten_id = $this->getKabupaten(true)->select('id')->get()->toArray();
+        $all_kabupaten_id = array_flatten($all_kabupaten_id);
+        $kecamatan = Kecamatan::whereIn('kabupaten_id', $all_kabupaten_id);
+        if ($queryReturn)
+            return $kecamatan;
+        return $kecamatan->get();
+    }
+
+    /**
+     * mendapatkan data kelurahan
+     * @param bool $queryReturn
+     * @return mixed
+     */
+    public function getKelurahan($queryReturn = false)
+    {
+        $all_id_kecamatan = $this->getKecamatan(true)->select('id')->get()->toArray();
+        $all_id_kecamatan = array_flatten($all_id_kecamatan);
+        $kelurahan = Kelurahan::whereIn('kecamatan_id', $all_id_kecamatan);
+        if ($queryReturn)
+            return $kelurahan;
+        return $kelurahan->get();
+    }
 }
