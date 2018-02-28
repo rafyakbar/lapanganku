@@ -23,10 +23,10 @@ class Kecamatan extends Model
      */
     public function getKabupaten($queryReturn = false)
     {
-        $kabupaten = $this->belongsTo('App\Kabupaten', 'kabupaten_id');
+        $data = $this->belongsTo('App\Kabupaten', 'kabupaten_id');
         if ($queryReturn)
-            return $kabupaten;
-        return $kabupaten->first();
+            return $data;
+        return $data->first();
     }
 
     /**
@@ -46,10 +46,10 @@ class Kecamatan extends Model
      */
     public function getSportCenter($queryReturn = false)
     {
-        $sc = $this->hasMany('App\SportCenter', 'kelurahan_id');
+        $data = $this->hasMany('App\SportCenter', 'kelurahan_id');
         if ($queryReturn)
-            return $sc;
-        return $sc->get();
+            return $data;
+        return $data->get();
     }
 
 }
