@@ -12,7 +12,7 @@ class Provinsi extends Model
 
     public $incrementing = false;
 
-    public $timestamps = 'false';
+    public $timestamps = false;
 
     protected $fillable = [
         'id', 'nama'
