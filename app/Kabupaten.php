@@ -12,7 +12,7 @@ class Kabupaten extends Model
 
     public $incrementing = false;
 
-    public $timestamps = 'false';
+    public $timestamps = false;
 
     protected $fillable = [
         'id', 'provinsi_id', 'nama'
