@@ -61,7 +61,7 @@ class Lapangan extends Model
      */
     public function getMember($queryReturn = false)
     {
-        $data = $this->belongsToMany('App\Member', 'member_lapangan', 'lapangan_id', 'member_id');
+        $data = $this->belongsToMany('App\Member', 'member_lapangan', 'lapangan_id', 'member_id')->withPivot('jumlah_bulan', 'harga','waktu_mulai', 'jam','hari');
         if ($queryReturn)
             return $data;
         return $data->get();
