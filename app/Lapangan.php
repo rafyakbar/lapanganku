@@ -74,7 +74,7 @@ class Lapangan extends Model
      */
     public function getSewa($queryReturn = false)
     {
-        $data = $this->belongsToMany('App\Sewa', 'sewa', 'lapangan_id', 'user_id')->withPivot('status', 'waktu', 'jam')->withTimestamps();
+        $data = $this->belongsToMany('App\Sewa', 'sewa', 'lapangan_id', 'user_id')->withPivot('harga', 'status', 'waktu', 'jam')->withTimestamps();
         if ($queryReturn)
             return $data;
         return $data->get();
