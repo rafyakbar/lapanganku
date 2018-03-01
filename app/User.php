@@ -61,7 +61,7 @@ class User extends Authenticatable
      */
     public function getSewa($queryReturn = false)
     {
-        $data = $this->belongsToMany('App\Lapangan', 'sewa', 'user_id', 'lapangan_id')->withPivot('status','waktu', 'jam')->withTimestamps();
+        $data = $this->belongsToMany('App\Lapangan', 'sewa', 'user_id', 'lapangan_id')->withPivot('harga', 'status','waktu', 'jam')->withTimestamps();
         if ($queryReturn)
             return $data;
         return $data->get();
