@@ -10,6 +10,8 @@ class Kecamatan extends Model
 
     protected $keyType = 'string';
 
+    public $incrementing = false;
+
     public $timestamps = 'false';
 
     protected $fillable = [
@@ -51,5 +53,7 @@ class Kecamatan extends Model
             return $data;
         return $data->get();
     }
+
+
 
 }
