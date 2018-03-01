@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Support\Role;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -77,5 +78,41 @@ class User extends Authenticatable
         if ($queryReturn)
             return $data;
         return $data->get();
+    }
+
+    /**
+     * cek apakah user ini adalah root atau tidak
+     * @return bool
+     */
+    public function isRoot()
+    {
+        return $this->role === Role::ROOT;
+    }
+
+    /**
+     * cek apakah user ini adalah pemilik atau tidak
+     * @return bool
+     */
+    public function isPemilik()
+    {
+        return $this->role === Role::PEMILIK;
+    }
+
+    /**
+     * cek apakah user ini adalah pegawai atau tidak
+     * @return bool
+     */
+    public function isPegawai()
+    {
+        return $this->role === Role::PEGAWAI;
+    }
+
+    /**
+     * cek apakah user ini adalah pengunjung atau tidak
+     * @return bool
+     */
+    public function isPengunjung()
+    {
+        return $this->role === Role::PENGUNJUNG;
     }
 }
