@@ -54,7 +54,7 @@ class UserSportCenterSeeder extends Seeder
                 //membuat sport center
                 $sc = SportCenter::create([
                     'kecamatan_id' => $kecamatan->id,
-                    'nama' => ucwords($faker->unique()->userName).' Sport Center',
+                    'nama' => ucwords($faker->unique()->firstName).' Sport Center',
                     'dir' => '',
                     'alamat' => $faker->unique()->streetAddress,
                     'keterangan' => $faker->realText(rand(1000,1750))
