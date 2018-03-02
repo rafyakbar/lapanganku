@@ -11,7 +11,7 @@ class Lapangan extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'sportcenter_id', 'jenis_id', 'harga_id'
+        'sportcenter_id', 'jenis_id', 'keterangan'
     ];
 
 
@@ -35,10 +35,10 @@ class Lapangan extends Model
      */
     public function getHarga($queryReturn = false)
     {
-        $harga = $this->belongsTo('App\Harga', 'harga_id');
+        $data = $this->belongsToMany('App\Harga', 'harga_lapangan', 'lapangan_id', 'harga_id');
         if ($queryReturn)
-            return $harga;
-        return $harga->first();
+            return $data;
+        return $data->get();
     }
 
     /**
@@ -74,7 +74,7 @@ class Lapangan extends Model
      */
     public function getSewa($queryReturn = false)
     {
-        $data = $this->belongsToMany('App\Sewa', 'sewa', 'lapangan_id', 'user_id')->withPivot('harga', 'status', 'waktu', 'jam')->withTimestamps();
+        $data = $this->belongsToMany('App\Sewa', 'sewa', 'lapangan_id', 'user_id')->withPivot('harga', 'status', 'waktu', 'jam','registrasi')->withTimestamps();
         if ($queryReturn)
             return $data;
         return $data->get();
