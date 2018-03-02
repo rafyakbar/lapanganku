@@ -21,6 +21,9 @@ class SportcenterTable extends Migration
             $table->text('dir');
             $table->text('alamat');
             $table->text('keterangan');
+            $table->integer('max_pelunasan_jam');
+            $table->boolean('bisa_transfer')->default(false);
+            $table->boolean('blokir')->default(false);
             $table->timestamps();
         });
     }

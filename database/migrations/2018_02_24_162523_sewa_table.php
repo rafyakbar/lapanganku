@@ -22,6 +22,7 @@ class SewaTable extends Migration
             $table->string('status');
             $table->timestamp('waktu');
             $table->integer('jam')->unsigned();
+            $table->boolean('registrasi')->default(false);
             $table->timestamps();
         });
     }
