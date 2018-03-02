@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Jenis;
 
 class JenisSeeder extends Seeder
 {
@@ -23,6 +24,10 @@ class JenisSeeder extends Seeder
      */
     public function run()
     {
-        //
+        foreach (self::JENIS as $jenis){
+            Jenis::create([
+                'nama' => $jenis
+            ]);
+        }
     }
 }
