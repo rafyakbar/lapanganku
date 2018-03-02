@@ -32,7 +32,7 @@ class Harga extends Model
      */
     public function getLapangan($queryReturn = false)
     {
-        $data = $this->hasMany('App\Lapangan', 'harga_id');
+        $data = $this->belongsToMany('App\Lapangan', 'harga_lapangan', 'harga_id', 'lapangan_id');
         if ($queryReturn)
             return $data;
         return $data->get();
