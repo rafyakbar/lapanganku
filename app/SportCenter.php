@@ -9,7 +9,7 @@ class SportCenter extends Model
     protected $table = 'sportcenter';
 
     protected $fillable = [
-        'kecamatan_id', 'nama', 'dir', 'alamat', 'keterangan', 'created_at', 'updated_at'
+        'kecamatan_id', 'nama', 'dir', 'alamat', 'keterangan', 'max_pelunasan_jam','bisa_transfer', 'blokir', 'created_at', 'updated_at'
     ];
 
     /**
