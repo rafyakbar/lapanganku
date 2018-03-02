@@ -18,5 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call('KecamatanSeeder');
         $this->call('JenisSeeder');
         $this->call('UserSportCenterSeeder');
+        $this->call('MemberSeeder');
+        $this->call('JenisSportCenterSeeder');
     }
 }
