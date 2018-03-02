@@ -37,4 +37,12 @@ class Member extends Model
             return $data;
         return $data->first();
     }
+
+    public function getLapangan($queryReturn = false)
+    {
+        $data = $this->belongsToMany('App\Lapangan', 'member_lapangan', 'member_id', 'lapangan_id')->withPivot('jumlah_bulan', 'harga','waktu_mulai', 'jam','hari');
+        if ($queryReturn)
+            return $data;
+        return $data->get();
+    }
 }
