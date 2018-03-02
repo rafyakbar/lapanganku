@@ -115,4 +115,17 @@ class User extends Authenticatable
     {
         return $this->role === Role::PENGUNJUNG;
     }
+
+    /**
+     * mengambil data pengunjung
+     * @param bool $queryReturn
+     * @return mixed
+     */
+    public static function getPengunjung($queryReturn = false)
+    {
+        $user = User::where('role', Role::PENGUNJUNG);
+        if ($queryReturn)
+            return $user;
+        return $user->get();
+    }
 }
