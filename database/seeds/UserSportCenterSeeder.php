@@ -50,7 +50,7 @@ class UserSportCenterSeeder extends Seeder
             /**
              * pemilik, pegawai dan sport center
              */
-            for($c = 0; $c < rand(2, 4); $c++){
+            for($c = 0; $c < rand(1, 3); $c++){
                 //membuat sport center
                 $sc = SportCenter::create([
                     'kecamatan_id' => $kecamatan->id,
@@ -71,7 +71,7 @@ class UserSportCenterSeeder extends Seeder
                 ]);
 
                 //membuat pegawai
-                for ($i = 0; $i < rand(2, 4); $i++){
+                for ($i = 0; $i < rand(1, 3); $i++){
                     User::create([
                         'nama' => ($f = $faker->firstName).' '.($l = $faker->lastName),
                         'email' => strtolower($f).strtolower($l).++$counter.'@lapanganku.com',
@@ -86,7 +86,7 @@ class UserSportCenterSeeder extends Seeder
             /**
              * membuat pengunjung
              */
-            for ($c = 0; $c < rand(5, 10); $c++){
+            for ($c = 0; $c < rand(2, 5); $c++){
                 User::create([
                     'nama' => ($f = $faker->firstName).' '.($l = $faker->lastName),
                     'email' => strtolower($f).strtolower($l).++$counter.'@lapanganku.com',
