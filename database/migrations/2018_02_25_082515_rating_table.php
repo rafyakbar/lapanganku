@@ -14,8 +14,8 @@ class RatingTable extends Migration
     public function up()
     {
         Schema::create('rating', function (Blueprint $table){
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('SET NULL');
             $table->bigInteger('sportcenter_id')->unsigned();
             $table->foreign('sportcenter_id')->references('id')->on('sportcenter')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->smallInteger('bintang');
