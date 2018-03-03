@@ -15,13 +15,13 @@ class SportcenterTable extends Migration
     {
         Schema::create('sportcenter', function (Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('kecamatan_id');
-            $table->foreign('kecamatan_id')->references('id')->on('kecamatan')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->string('kecamatan_id')->nullable();
+            $table->foreign('kecamatan_id')->references('id')->on('kecamatan')->onUpdate('CASCADE')->onDelete('SET NULL');
             $table->string('nama');
             $table->text('dir');
             $table->text('alamat');
             $table->text('keterangan');
-            $table->integer('max_pelunasan_jam');
+            $table->integer('max_pelunasan_jam')->default(23);
             $table->boolean('bisa_transfer')->default(false);
             $table->boolean('blokir')->default(false);
             $table->timestamps();
