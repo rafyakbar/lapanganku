@@ -14,10 +14,11 @@ class SewaTable extends Migration
     public function up()
     {
         Schema::create('sewa', function (Blueprint $table){
+            $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->bigInteger('lapangan_id')->unsigned();
-            $table->foreign('lapangan_id')->references('id')->on('lapangan')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('lapangan_id')->references('id')->on('lapangan')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->bigInteger('harga');
             $table->string('status');
             $table->timestamp('waktu');
