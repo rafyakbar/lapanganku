@@ -17,8 +17,8 @@ class LapanganTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('sportcenter_id')->unsigned();
             $table->foreign('sportcenter_id')->references('id')->on('sportcenter')->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->integer('jenis_id')->unsigned();
-            $table->foreign('jenis_id')->references('id')->on('jenis')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->integer('jenis_id')->unsigned()->nullable();
+            $table->foreign('jenis_id')->references('id')->on('jenis')->onUpdate('CASCADE')->onDelete('SET NULL');
             $table->string('keterangan');
         });
     }
