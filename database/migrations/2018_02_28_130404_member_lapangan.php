@@ -17,7 +17,7 @@ class MemberLapangan extends Migration
             $table->bigInteger('member_id')->unsigned();
             $table->foreign('member_id')->references('id')->on('member')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->bigInteger('lapangan_id')->unsigned();
-            $table->foreign('lapangan_id')->references('id')->on('lapangan')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('lapangan_id')->references('id')->on('lapangan')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->integer('jumlah_bulan');
             $table->bigInteger('harga');
             $table->timestamp('waktu_mulai');
