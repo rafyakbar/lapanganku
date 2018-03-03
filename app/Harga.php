@@ -8,6 +8,8 @@ class Harga extends Model
 {
     protected $table = 'harga';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'sportcenter_id', 'per_jam', 'jam_awal', 'jam_akhir', 'hari'
     ];
