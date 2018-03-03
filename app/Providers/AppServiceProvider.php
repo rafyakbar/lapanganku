@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -22,7 +23,8 @@ class AppServiceProvider extends ServiceProvider
         /**
          * set locale Indonesia secara global pada class Carbon
          */
-        \Carbon\Carbon::setlocale('id');
+        Carbon::setUtf8(true);
+        Carbon::setLocale('id');
 
         /**
          * set max execution time 5 jam
