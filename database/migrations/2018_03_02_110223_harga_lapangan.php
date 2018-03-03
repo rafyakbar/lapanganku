@@ -15,7 +15,7 @@ class HargaLapangan extends Migration
     {
         Schema::create('harga_lapangan', function (Blueprint $table){
             $table->bigInteger('harga_id')->unsigned();
-            $table->foreign('harga_id')->references('id')->on('harga')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('harga_id')->references('id')->on('harga')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->bigInteger('lapangan_id')->unsigned();
             $table->foreign('lapangan_id')->references('id')->on('lapangan')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
