@@ -21,6 +21,7 @@ class HargaTable extends Migration
             $table->time('jam_awal');
             $table->time('jam_akhir');
             $table->text('hari');
+            $table->text('keterangan')->nullable();
         });
     }
 
