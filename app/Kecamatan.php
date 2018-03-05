@@ -48,7 +48,7 @@ class Kecamatan extends Model
      */
     public function getSportCenter($queryReturn = false)
     {
-        $data = $this->hasMany('App\SportCenter', 'kelurahan_id');
+        $data = $this->hasMany('App\SportCenter', 'kecamatan_id');
         if ($queryReturn)
             return $data;
         return $data->get();
