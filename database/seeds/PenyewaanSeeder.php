@@ -24,7 +24,7 @@ class PenyewaanSeeder extends Seeder
                         $status = array_random(Status::ALL);
                         $waktu = ($status == Status::BOOKING || $status == Status::DP) ? Carbon::tomorrow()->addHours(rand(8,21))->addMinutes(rand(0,59)) : Carbon::yesterday()->addHours(rand(8,21))->addMinutes(rand(0,59));
                         $user->getSewa(true)->attach($l, [
-                            'harga' => $l->getHarga(true)->where('jam_awal', '<=', now()->toDateTimeString())->where('jam_akhir', '>=', now()->toDateTimeString())->first()->harga,
+                            'harga' => $l->getHarga(true)->where('jam_awal', '<=', now()->toTimeString())->where('jam_akhir', '>=', now()->toTimeString())->first()->per_jam,
                             'status' => $status,
                             'waktu' => $waktu,
                             'jam' => rand(1,3),
