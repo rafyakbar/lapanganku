@@ -21,8 +21,8 @@ class SewaTable extends Migration
             $table->foreign('lapangan_id')->references('id')->on('lapangan')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->bigInteger('harga');
             $table->string('status');
-            $table->timestamp('waktu');
-            $table->integer('jam')->unsigned();
+            $table->timestamp('waktu_mulai');
+            $table->timestamp('waktu_selesai');
             $table->boolean('registrasi')->default(false);
             $table->timestamps();
         });
