@@ -26,8 +26,8 @@ class PenyewaanSeeder extends Seeder
                         $user->getSewa(true)->attach($l, [
                             'harga' => $l->getHarga(true)->where('jam_awal', '<=', now()->toTimeString())->where('jam_akhir', '>=', now()->toTimeString())->first()->per_jam,
                             'status' => $status,
-                            'waktu' => $waktu,
-                            'jam' => rand(1,3),
+                            'waktu_mulai' => $waktu->toDateTimeString(),
+                            'waktu_selesai' => $waktu->addHours(rand(1,3))->toDateTimeString(),
                             'registrasi' => false
                         ]);
                     }
