@@ -61,7 +61,7 @@ class User extends Authenticatable
      */
     public function getSewa($queryReturn = false)
     {
-        $data = $this->belongsToMany('App\Lapangan', 'sewa', 'user_id', 'lapangan_id')->withPivot('harga', 'status','waktu', 'jam','registrasi')->withTimestamps();
+        $data = $this->belongsToMany('App\Lapangan', 'sewa', 'user_id', 'lapangan_id')->withPivot('harga', 'status','waktu_mulai', 'waktu_selesai','registrasi')->withTimestamps();
         if ($queryReturn)
             return $data;
         return $data->get();
@@ -74,7 +74,7 @@ class User extends Authenticatable
      */
     public function getMember($queryReturn = false)
     {
-        $data = $this->belongsToMany('App\SportCenter', 'member', 'user_id', 'sportcenter_id')->withPivot('valid_bulan')->withTimestamps();
+        $data = $this->belongsToMany('App\SportCenter', 'member', 'user_id', 'sportcenter_id')->withPivot('id', 'valid_bulan')->withTimestamps();
         if ($queryReturn)
             return $data;
         return $data->get();
