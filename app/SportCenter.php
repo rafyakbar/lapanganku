@@ -9,7 +9,7 @@ class SportCenter extends Model
     protected $table = 'sportcenter';
 
     protected $fillable = [
-        'kecamatan_id', 'nama', 'dir', 'alamat', 'keterangan', 'max_pelunasan_jam','bisa_transfer', 'blokir', 'created_at', 'updated_at'
+        'kecamatan_id', 'nama', 'dir', 'alamat', 'keterangan', 'max_pelunasan_jam','bisa_transfer', 'blokir', 'created_at', 'updated_at', 'hari_libur'
     ];
 
     /**
@@ -117,7 +117,7 @@ class SportCenter extends Model
      */
     public function getMember($queryReturn = false)
     {
-        $data = $this->belongsToMany('App\User', 'member', 'sportcenter_id', 'user_id')->withPivot('valid_bulan')->withTimestamps();
+        $data = $this->belongsToMany('App\User', 'member', 'sportcenter_id', 'user_id')->withPivot('id', 'valid_bulan')->withTimestamps();
         if ($queryReturn)
             return $data;
         return $data->get();
