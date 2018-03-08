@@ -15,13 +15,18 @@ class MemberSeeder extends Seeder
     {
         foreach (User::getPengunjung() as $user) {
             //untuk mengacak apakah user ini menjadi member atau tidak
-            if (rand(0,1)){
+            $r = rand(0,1);
+            $r = ($r) ? $r : rand(0,1);
+            $r = ($r) ? $r : rand(0,1);
+            if ($r){
                 //merandom sportcenter
-                foreach (SportCenter::all()->random(rand(1,3)) as $sc){
+                foreach ($user->getKecamatan()->getSportCenter() as $sc){
                     //mengisi tabel member (dari hasil many to many)
-                    $user->getMember(true)->attach($sc, [
-                        'valid_bulan' => 12
-                    ]);
+                    if (rand(0,1)){
+                        $user->getMember(true)->attach($sc, [
+                            'valid_bulan' => 12
+                        ]);
+                    }
                 }
             }
         }
