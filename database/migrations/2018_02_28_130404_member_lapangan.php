@@ -20,9 +20,10 @@ class MemberLapangan extends Migration
             $table->foreign('lapangan_id')->references('id')->on('lapangan')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->integer('jumlah_bulan');
             $table->bigInteger('harga');
-            $table->timestamp('waktu_mulai');
-            $table->integer('jam');
+            $table->time('waktu_mulai');
+            $table->time('waktu_selesai');
             $table->text('hari');
+            $table->timestamps();
         });
     }
 
