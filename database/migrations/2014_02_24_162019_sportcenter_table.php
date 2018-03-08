@@ -24,6 +24,7 @@ class SportcenterTable extends Migration
             $table->integer('max_pelunasan_jam')->default(23);
             $table->boolean('bisa_transfer')->default(false);
             $table->boolean('blokir')->default(false);
+            $table->text('hari_libur')->default('');
             $table->timestamps();
         });
     }
