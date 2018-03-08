@@ -6,6 +6,7 @@ use App\Support\Role;
 use Faker\Factory;
 use App\Provinsi;
 use App\SportCenter;
+use App\Support\Hari;
 
 class UserSportCenterSeeder extends Seeder
 {
@@ -57,7 +58,8 @@ class UserSportCenterSeeder extends Seeder
                     'nama' => $faker->firstName.' Sport Center',
                     'dir' => '',
                     'alamat' => $faker->unique()->streetAddress,
-                    'keterangan' => $faker->realText(rand(1000,1750))
+                    'keterangan' => $faker->realText(rand(1000,1750)),
+                    'hari_libur' => implode(';', collect(Hari::ALL)->random(rand(0,2))->toArray())
                 ]);
                 //membuat owner
                 User::create([
