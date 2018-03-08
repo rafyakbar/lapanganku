@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Lapangan extends Model
@@ -61,7 +62,7 @@ class Lapangan extends Model
      */
     public function getMember($queryReturn = false)
     {
-        $data = $this->belongsToMany('App\Member', 'member_lapangan', 'lapangan_id', 'member_id')->withPivot('jumlah_bulan', 'harga','waktu_mulai', 'jam','hari');
+        $data = $this->belongsToMany('App\Member', 'member_lapangan', 'lapangan_id', 'member_id')->withPivot('jumlah_bulan', 'harga','waktu_mulai', 'waktu_selesai','hari');
         if ($queryReturn)
             return $data;
         return $data->get();
@@ -74,9 +75,14 @@ class Lapangan extends Model
      */
     public function getSewa($queryReturn = false)
     {
-        $data = $this->belongsToMany('App\Sewa', 'sewa', 'lapangan_id', 'user_id')->withPivot('harga', 'status', 'waktu', 'jam','registrasi')->withTimestamps();
+        $data = $this->belongsToMany('App\Sewa', 'sewa', 'lapangan_id', 'user_id')->withPivot('harga', 'status', 'waktu_mulai', 'waktu_selesai','registrasi')->withTimestamps();
         if ($queryReturn)
             return $data;
         return $data->get();
+    }
+
+    public function checkKetersediaan($waktuMulai, $waktuSelesai)
+    {
+        $sewa = $this->getSewa()->where('waktu_selesai', '>=', $waktuMulai)->where('waktu', '<=', $waktuSelesai);
     }
 }
