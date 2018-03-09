@@ -75,14 +75,31 @@ class Lapangan extends Model
      */
     public function getSewa($queryReturn = false)
     {
-        $data = $this->belongsToMany('App\Sewa', 'sewa', 'lapangan_id', 'user_id')->withPivot('harga', 'status', 'waktu_mulai', 'waktu_selesai','registrasi')->withTimestamps();
+        $data = $this->belongsToMany('App\User', 'sewa', 'lapangan_id', 'user_id')->withPivot('harga', 'status', 'waktu_mulai', 'waktu_selesai','registrasi')->withTimestamps();
         if ($queryReturn)
             return $data;
         return $data->get();
     }
 
-    public function checkKetersediaan($waktuMulai, $waktuSelesai)
+    /**
+     * mengecek ketersediaan lapangan
+     * @param string $waktuMulai
+     * @param string $waktuSelesai
+     * @return bool
+     */
+    public function cekKetersediaan(string $waktuMulai, string $waktuSelesai)
     {
-        $sewa = $this->getSewa()->where('waktu_selesai', '>=', $waktuMulai)->where('waktu', '<=', $waktuSelesai);
+        $wm = Carbon::parse($waktuMulai);
+        $ws = Carbon::parse($waktuSelesai);
+        $sewa = $this->getSewa(true)
+            ->whereRaw("((waktu_mulai <= '".$waktuMulai."' AND waktu_selesai > '".$waktuMulai."')")
+            ->orWhereRaw("(waktu_mulai < '".$waktuSelesai."' AND waktu_selesai >= '".$waktuSelesai."'))")
+            ->count();
+        $memberlapangan = $this->getMember(true)
+            ->whereRaw("hari LIKE '%".$wm->format('l')."%'")
+            ->whereRaw("((waktu_mulai <= '".$wm->toTimeString()."' AND waktu_selesai > '".$wm->toTimeString()."')")
+            ->orWhereRaw("(waktu_mulai < '".$ws->toTimeString()."' AND waktu_selesai >= '".$ws->toTimeString()."'))")
+            ->count();
+        return $sewa == 0 && $memberlapangan == 0;
     }
 }
