@@ -17,8 +17,11 @@ class HargaLapanganSeeder extends Seeder
      */
     public function run()
     {
+        //mengambil semua data sportcenter
         foreach (SportCenter::all() as $sc){
+            //mengambil data jenis per sportcenter
             foreach ($sc->getJenis() as $jenis){
+                //membuat harga
                 $harga_pagi = Harga::create([
                     'per_jam' => rand(50,75) * 1000,
                     'jam_awal' => Carbon::today()->addHours(6),
@@ -35,6 +38,7 @@ class HargaLapanganSeeder extends Seeder
                     'sportcenter_id' => $sc->id,
                     'keterangan' => 'Harga lapangan '.$jenis->nama.' malam'
                 ]);
+                //membuat lapangan per jenis sportcenter
                 for ($c = 0; $c < rand(1,3); $c++){
                     $lapangan = Lapangan::create([
                         'sportcenter_id' => $sc->id,
