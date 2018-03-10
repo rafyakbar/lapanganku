@@ -46,7 +46,7 @@ class UserSportCenterSeeder extends Seeder
         ]);
 
         $counter = 0;
-        foreach (Provinsi::where('nama', 'JAWA TIMUR')->first() as $provinsi){
+        foreach (Provinsi::where('nama', 'JAWA TIMUR')->get() as $provinsi){
 //            $jatim = Provinsi::where('nama', 'JAWA TIMUR')->first();
             foreach ($provinsi->getKecamatan() as $kecamatan){
                 /**
